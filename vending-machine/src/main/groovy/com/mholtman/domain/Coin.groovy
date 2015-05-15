@@ -1,8 +1,8 @@
 package com.mholtman.domain
 
+import groovy.transform.EqualsAndHashCode
+
+@EqualsAndHashCode
 class Coin {
-
-    Coin(double weight, double diameter, double thickness) {
-
-    }
+    double weightGrams,diameterMm,thicknessMm
 }

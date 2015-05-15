@@ -14,7 +14,7 @@ class VendingMachineSpec extends Specification {
 
     def "machine accepts quarters"() {
         setup:
-        def quarter = new Coin(5.670, 24.26, 1.75)
+        def quarter = new Coin(weightGrams: 5.670, diameterMm: 24.26, thicknessMm: 1.75)
         def machine = new VendingMachine()
 
         when:
@@ -22,5 +22,17 @@ class VendingMachineSpec extends Specification {
 
         then:
         machine.display == '$0.25'
+    }
+
+    def "machine accepts dimes"() {
+        setup:
+        def dime = new Coin(weightGrams:  2.268, diameterMm:  17.91, thicknessMm:  1.35)
+        def machine = new VendingMachine()
+
+        when:
+        machine.insertCoin(dime)
+
+        then:
+        machine.display == '$0.10'
     }
 }
