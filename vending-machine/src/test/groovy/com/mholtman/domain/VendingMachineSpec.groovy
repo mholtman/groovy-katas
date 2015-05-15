@@ -35,4 +35,16 @@ class VendingMachineSpec extends Specification {
         then:
         machine.display == '$0.10'
     }
+
+    def "machine accepts nickels"() {
+        setup:
+        def nickel = new Coin(weightGrams: 5.000, diameterMm: 21.21, thicknessMm: 1.95)
+        def machine = new VendingMachine()
+
+        when:
+        machine.insertCoin(nickel)
+
+        then:
+        machine.display == '$0.05'
+    }
 }
