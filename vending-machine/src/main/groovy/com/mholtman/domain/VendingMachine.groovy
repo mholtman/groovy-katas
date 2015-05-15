@@ -1,5 +1,6 @@
 package com.mholtman.domain
 
+import java.text.NumberFormat
 
 class VendingMachine {
 
@@ -8,19 +9,22 @@ class VendingMachine {
     static final Coin dime = new Coin(weightGrams:  2.268, diameterMm:  17.91,thicknessMm:  1.35)
     static final Coin nickel = new Coin(weightGrams: 5.000, diameterMm: 21.21, thicknessMm: 1.95)
 
+    NumberFormat defaultFormat = NumberFormat.getCurrencyInstance();
 
-    private String displayMessage = insertCoinsMessage
+    private double valueOfCoins;
 
     def String getDisplay() {
-        displayMessage
+        if (valueOfCoins == 0)
+            return insertCoinsMessage
+        return defaultFormat.format(valueOfCoins)
     }
 
     def insertCoin(Coin coin) {
         if (coin.equals(quarter))
-            displayMessage = '$0.25'
+            valueOfCoins += 0.25
         if (coin.equals(dime))
-            displayMessage = '$0.10'
+            valueOfCoins += 0.10
         if (coin.equals(nickel))
-            displayMessage = '$0.05'
+            valueOfCoins += 0.05
     }
 }

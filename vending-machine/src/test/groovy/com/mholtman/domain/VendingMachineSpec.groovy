@@ -4,47 +4,50 @@ import spock.lang.Specification
 
 class VendingMachineSpec extends Specification {
 
-    def "new vending machine displays INSERT COINS message"() {
-        when:
-        def machine = new VendingMachine()
+    VendingMachine machine;
+    final static Coin QUARTER = new Coin(weightGrams: 5.670, diameterMm: 24.26, thicknessMm: 1.75)
+    final static Coin DIME = new Coin(weightGrams:  2.268, diameterMm:  17.91, thicknessMm:  1.35)
+    final static Coin NICKEL = new Coin(weightGrams: 5.000, diameterMm: 21.21, thicknessMm: 1.95)
 
-        then:
+    def setup() {
+        machine = new VendingMachine()
+    }
+
+    def "new vending machine displays INSERT COINS message"() {
+        expect:
         machine.display == 'INSERT COINS'
     }
 
     def "machine accepts quarters"() {
-        setup:
-        def quarter = new Coin(weightGrams: 5.670, diameterMm: 24.26, thicknessMm: 1.75)
-        def machine = new VendingMachine()
-
         when:
-        machine.insertCoin(quarter)
+        machine.insertCoin(QUARTER)
 
         then:
         machine.display == '$0.25'
     }
 
     def "machine accepts dimes"() {
-        setup:
-        def dime = new Coin(weightGrams:  2.268, diameterMm:  17.91, thicknessMm:  1.35)
-        def machine = new VendingMachine()
-
         when:
-        machine.insertCoin(dime)
+        machine.insertCoin(DIME)
 
         then:
         machine.display == '$0.10'
     }
 
     def "machine accepts nickels"() {
-        setup:
-        def nickel = new Coin(weightGrams: 5.000, diameterMm: 21.21, thicknessMm: 1.95)
-        def machine = new VendingMachine()
-
         when:
-        machine.insertCoin(nickel)
+        machine.insertCoin(NICKEL)
 
         then:
         machine.display == '$0.05'
+    }
+
+    def "machine accepts multiple coins"() {
+        when:
+        machine.insertCoin(QUARTER)
+        machine.insertCoin(DIME)
+
+        then:
+        machine.display == '$0.35'
     }
 }
