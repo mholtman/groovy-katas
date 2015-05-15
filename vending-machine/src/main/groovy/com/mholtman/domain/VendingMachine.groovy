@@ -1,11 +1,17 @@
 package com.mholtman.domain
 
-/**
- * Created by mholtman on 5/15/15.
- */
+
 class VendingMachine {
 
+    static final String insertCoinsMessage = 'INSERT COINS'
+
+    private String displayMessage = insertCoinsMessage
+
     def String getDisplay() {
-        'INSERT COINS'
+        displayMessage
+    }
+
+    def insertCoin(Coin coin) {
+        displayMessage = '$0.25'
     }
 }
