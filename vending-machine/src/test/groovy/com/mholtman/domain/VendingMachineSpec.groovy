@@ -14,12 +14,12 @@ class VendingMachineSpec extends Specification {
         machine = new VendingMachine()
     }
 
-    def "new vending machine displays INSERT COINS message"() {
+    def "new machine displays INSERT COINS message"() {
         expect:
         machine.display == 'INSERT COINS'
     }
 
-    def "machine accepts quarters"() {
+    def "accepts quarters"() {
         when:
         machine.insertCoin(QUARTER)
 
@@ -27,7 +27,7 @@ class VendingMachineSpec extends Specification {
         machine.display == '$0.25'
     }
 
-    def "machine accepts dimes"() {
+    def "accepts dimes"() {
         when:
         machine.insertCoin(DIME)
 
@@ -35,7 +35,7 @@ class VendingMachineSpec extends Specification {
         machine.display == '$0.10'
     }
 
-    def "machine accepts nickels"() {
+    def "accepts nickels"() {
         when:
         machine.insertCoin(NICKEL)
 
@@ -43,7 +43,7 @@ class VendingMachineSpec extends Specification {
         machine.display == '$0.05'
     }
 
-    def "machine accepts multiple coins"() {
+    def "accepts multiple coins"() {
         when:
         machine.insertCoin(QUARTER)
         machine.insertCoin(DIME)
@@ -52,7 +52,7 @@ class VendingMachineSpec extends Specification {
         machine.display == '$0.35'
     }
 
-    def "machine does not accept pennies"() {
+    def "does not accept pennies"() {
         when:
         machine.insertCoin(PENNY)
 
@@ -60,7 +60,7 @@ class VendingMachineSpec extends Specification {
         machine.display == 'INSERT COINS'
     }
 
-    def "machine returns invalid coins via coin return"() {
+    def "returns invalid coins via coin return"() {
         when:
         machine.insertCoin(PENNY)
 
