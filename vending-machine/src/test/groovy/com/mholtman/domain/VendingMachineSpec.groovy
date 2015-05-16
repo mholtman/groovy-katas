@@ -8,6 +8,7 @@ class VendingMachineSpec extends Specification {
     final static Coin QUARTER = new Coin(weightGrams: 5.670, diameterMm: 24.26, thicknessMm: 1.75)
     final static Coin DIME = new Coin(weightGrams:  2.268, diameterMm:  17.91, thicknessMm:  1.35)
     final static Coin NICKEL = new Coin(weightGrams: 5.000, diameterMm: 21.21, thicknessMm: 1.95)
+    final static Coin PENNY = new Coin(weightGrams: 2.500, diameterMm: 19.05, thicknessMm: 1.52)
 
     def setup() {
         machine = new VendingMachine()
@@ -49,5 +50,21 @@ class VendingMachineSpec extends Specification {
 
         then:
         machine.display == '$0.35'
+    }
+
+    def "machine does not accept pennies"() {
+        when:
+        machine.insertCoin(PENNY)
+
+        then:
+        machine.display == 'INSERT COINS'
+    }
+
+    def "machine returns invalid coins via coin return"() {
+        when:
+        machine.insertCoin(PENNY)
+
+        then:
+        machine.coinReturn.contains(PENNY)
     }
 }
