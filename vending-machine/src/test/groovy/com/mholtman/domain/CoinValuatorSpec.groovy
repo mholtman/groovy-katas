@@ -1,7 +1,9 @@
 package com.mholtman.domain
 
+import com.mholtman.exceptions.InvalidCoinException
 import spock.lang.Specification
 import spock.lang.Unroll
+
 
 class CoinValuatorSpec extends Specification {
 
@@ -39,5 +41,15 @@ class CoinValuatorSpec extends Specification {
         QUARTER | 0.25
         DIME    | 0.10
         NICKEL  | 0.05
+    }
+
+    def "trying to value an invalid coin throws a InvalidCoin exception"() {
+        when:
+        valuator.valueOf(PENNY)
+
+        then:
+        thrown(InvalidCoinException)
+
+
     }
 }

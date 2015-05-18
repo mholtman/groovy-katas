@@ -1,5 +1,7 @@
 package com.mholtman.domain
 
+import com.mholtman.exceptions.InvalidCoinException
+
 class CoinValuator {
 
     private static final Coin quarter = new Coin(weightGrams: 5.670, diameterMm: 24.26, thicknessMm: 1.75, label: "Quarter")
@@ -17,6 +19,8 @@ class CoinValuator {
     }
 
     def double valueOf(Coin coin) {
+        if (!isValidCoin(coin)) throw new InvalidCoinException()
+
         coinValues[coin]
     }
 }
