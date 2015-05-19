@@ -67,4 +67,9 @@ class VendingMachineSpec extends Specification {
         then:
         machine.coinReturn.contains(PENNY)
     }
+
+    def "contains products"() {
+        expect:
+        machine.products.size == 3
+    }
 }

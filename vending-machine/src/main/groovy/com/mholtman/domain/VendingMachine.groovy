@@ -9,7 +9,8 @@ class VendingMachine {
 
     private def coinValuator = new CoinValuator()
     private def defaultFormat = NumberFormat.getCurrencyInstance()
-    
+
+    def products = ["", "", ""]
     def coinReturn = new ArrayList<Coin>()
 
     def String getDisplay() {
