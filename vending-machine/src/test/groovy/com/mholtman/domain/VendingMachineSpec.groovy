@@ -1,6 +1,7 @@
 package com.mholtman.domain
 
 import spock.lang.Specification
+import spock.lang.Unroll
 
 class VendingMachineSpec extends Specification {
 
@@ -71,5 +72,18 @@ class VendingMachineSpec extends Specification {
     def "contains products"() {
         expect:
         machine.products.size == 3
+    }
+
+    @Unroll
+    def "contains #name which costs #price"() {
+        expect:
+        machine.products[i].price == price
+        machine.products[i].name == name
+
+        where:
+        i | price | name
+        0 | 0.50  | 'chips'
+        1 | 1.00  | 'cola'
+        2 | 0.65  | 'candy'
     }
 }
