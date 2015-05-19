@@ -5,14 +5,12 @@ import java.text.NumberFormat
 class VendingMachine {
 
     private static final String insertCoinsMessage = 'INSERT COINS'
-
-    def coinReturn = new ArrayList<Coin>()
-
-    def coinValuator = new CoinValuator()
-
-    private def defaultFormat = NumberFormat.getCurrencyInstance()
-
     private double valueOfCoins
+
+    private def coinValuator = new CoinValuator()
+    private def defaultFormat = NumberFormat.getCurrencyInstance()
+    
+    def coinReturn = new ArrayList<Coin>()
 
     def String getDisplay() {
         if (valueOfCoins == 0)
@@ -22,10 +20,7 @@ class VendingMachine {
     }
 
     def insertCoin(Coin coin) {
-        if (coinValuator.isValidCoin(coin))
-            valueOfCoins += coinValuator.valueOf(coin)
-        else
-            coinReturn.push(coin)
+        coinValuator.isValidCoin(coin) ? valueOfCoins += coinValuator.valueOf(coin) : coinReturn.push(coin)
     }
 
 }
