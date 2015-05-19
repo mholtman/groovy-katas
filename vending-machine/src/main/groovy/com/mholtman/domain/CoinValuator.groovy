@@ -18,7 +18,7 @@ class CoinValuator {
         validCoins.contains(coin)
     }
 
-    def double valueOf(Coin coin) {
+    def double valueOf(Coin coin) throws InvalidCoinException {
         if (!isValidCoin(coin)) throw new InvalidCoinException()
 
         coinValues[coin]
