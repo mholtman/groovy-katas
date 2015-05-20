@@ -97,4 +97,19 @@ class VendingMachineSpec extends Specification {
         then:
         machine.dispenser.contains(expectedCola)
     }
+
+    def "will not dispense cola to insufficient funds"() {
+        setup:
+        machine.insertCoin(QUARTER)
+        machine.insertCoin(QUARTER)
+        machine.insertCoin(QUARTER)
+
+        def expectedCola = new Product(name: 'cola', price: 1.00)
+
+        when:
+        machine.dispense('cola')
+
+        then:
+        !machine.dispenser.contains(expectedCola)
+    }
 }

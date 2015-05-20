@@ -29,9 +29,9 @@ class VendingMachine {
     }
 
     def dispense(String product) {
-        dispenser.add(products[1])
+        def chosenProduct  = products.find { it.name == product }
+
+        if (chosenProduct.price <= valueOfCoins)
+            dispenser.add(chosenProduct)
     }
-
-
-
 }
