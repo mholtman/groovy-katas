@@ -2,6 +2,7 @@ package com.mholtman.domain
 
 import spock.lang.Specification
 import spock.lang.Unroll
+import com.mholtman.exceptions.InvalidProductException
 
 class VendingMachineSpec extends Specification {
 
@@ -111,5 +112,14 @@ class VendingMachineSpec extends Specification {
 
         then:
         !machine.dispenser.contains(expectedCola)
+    }
+
+    def "throws InvalidProduct if no product found"() {
+        when:
+        machine.dispense('tribbles')
+
+        then:
+        thrown(InvalidProductException)
+
     }
 }

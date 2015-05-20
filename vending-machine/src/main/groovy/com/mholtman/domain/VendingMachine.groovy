@@ -1,6 +1,7 @@
 package com.mholtman.domain
 
 import java.text.NumberFormat
+import com.mholtman.exceptions.InvalidProductException
 
 class VendingMachine {
 
@@ -30,6 +31,8 @@ class VendingMachine {
 
     def dispense(String product) {
         def chosenProduct  = products.find { it.name == product }
+
+        if (!chosenProduct) throw new InvalidProductException()
 
         if (chosenProduct.price <= valueOfCoins)
             dispenser.add(chosenProduct)
