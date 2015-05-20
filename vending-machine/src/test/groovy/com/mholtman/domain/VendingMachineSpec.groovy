@@ -69,11 +69,6 @@ class VendingMachineSpec extends Specification {
         machine.coinReturn.contains(PENNY)
     }
 
-    def "contains products"() {
-        expect:
-        machine.products.size == 3
-    }
-
     @Unroll
     def "contains #name which costs #price"() {
         expect:
@@ -85,5 +80,21 @@ class VendingMachineSpec extends Specification {
         0 | 0.50  | 'chips'
         1 | 1.00  | 'cola'
         2 | 0.65  | 'candy'
+    }
+
+    def "can dispense cola"() {
+        setup:
+        machine.insertCoin(QUARTER)
+        machine.insertCoin(QUARTER)
+        machine.insertCoin(QUARTER)
+        machine.insertCoin(QUARTER)
+
+        def expectedCola = new Product(name: 'cola', price: 1.00)
+
+        when:
+        machine.dispense('cola')
+
+        then:
+        machine.dispenser.contains(expectedCola)
     }
 }

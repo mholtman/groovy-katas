@@ -15,6 +15,7 @@ class VendingMachine {
                     new Product(name: 'candy', price: 0.65)]
 
     def coinReturn = new ArrayList<Coin>()
+    def dispenser = new ArrayList<Product>()
 
     def String getDisplay() {
         if (valueOfCoins == 0)
@@ -26,5 +27,11 @@ class VendingMachine {
     def insertCoin(Coin coin) {
         coinValuator.isValidCoin(coin) ? valueOfCoins += coinValuator.valueOf(coin) : coinReturn.push(coin)
     }
+
+    def dispense(String product) {
+        dispenser.add(products[1])
+    }
+
+
 
 }
