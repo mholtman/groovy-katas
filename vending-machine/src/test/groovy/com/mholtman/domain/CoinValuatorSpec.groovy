@@ -49,7 +49,20 @@ class CoinValuatorSpec extends Specification {
 
         then:
         thrown(InvalidCoinException)
+    }
 
+    def "creates quarters"() {
+        expect:
+        valuator.getQuarter() == QUARTER
+    }
 
+    def "creates dimes"() {
+        expect:
+        valuator.getDime() == DIME
+    }
+
+    def "creates nickels"() {
+        expect:
+        valuator.getNickel() == NICKEL
     }
 }

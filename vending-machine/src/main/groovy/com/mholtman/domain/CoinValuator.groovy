@@ -21,4 +21,16 @@ class CoinValuator {
 
         coinValues[coin]
     }
+
+    def Coin getQuarter() {
+        quarter.clone()
+    }
+
+    def Coin getDime() {
+        dime.clone()
+    }
+
+    def Coin getNickel() {
+        nickel.clone()
+    }
 }
