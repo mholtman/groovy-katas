@@ -65,4 +65,14 @@ class CoinValuatorSpec extends Specification {
         expect:
         valuator.getNickel() == NICKEL
     }
+
+    @Unroll
+    def "provides coins for #amount"() {
+        expect:
+        valuator.provideCoinsForAmount(amount) == coinArray
+
+        where:
+        amount  | coinArray
+        0.25    | new ArrayList<Coin>([QUARTER.clone()])
+    }
 }

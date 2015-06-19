@@ -22,6 +22,10 @@ class CoinValuator {
         coinValues[coin]
     }
 
+    def ArrayList<Coin> provideCoinsForAmount(double amount) {
+        new ArrayList<Coin>([quarter.clone()])
+    }
+
     def Coin getQuarter() {
         quarter.clone()
     }

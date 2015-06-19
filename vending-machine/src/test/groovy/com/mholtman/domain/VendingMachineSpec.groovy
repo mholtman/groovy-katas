@@ -120,6 +120,5 @@ class VendingMachineSpec extends Specification {
 
         then:
         thrown(InvalidProductException)
-
     }
 }
