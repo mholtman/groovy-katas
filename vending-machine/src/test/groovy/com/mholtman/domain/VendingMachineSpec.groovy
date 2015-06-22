@@ -121,4 +121,18 @@ class VendingMachineSpec extends Specification {
         then:
         thrown(InvalidProductException)
     }
+
+    def "returns coins when coin return pressed"() {
+        setup:
+        machine.insertCoin(QUARTER)
+        machine.insertCoin(DIME)
+
+        def expectedCoinReturn = [QUARTER, DIME]
+
+        when:
+        machine.pressReturnCoins()
+
+        then:
+        machine.coinReturn == expectedCoinReturn
+    }
 }

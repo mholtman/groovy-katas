@@ -6,7 +6,7 @@ import com.mholtman.exceptions.InvalidProductException
 class VendingMachine {
 
     private static final String insertCoinsMessage = 'INSERT COINS'
-    private double valueOfCoins
+    private Integer valueOfCoins = 0
 
     private def coinValuator = new CoinValuator()
     private def defaultFormat = NumberFormat.getCurrencyInstance()
@@ -36,5 +36,9 @@ class VendingMachine {
 
         if (chosenProduct.price <= valueOfCoins)
             dispenser.add(chosenProduct)
+    }
+
+    def pressReturnCoins() {
+        coinValuator.provideCoinsForAmount(valueOfCoins).each {coinReturn.push(it)}
     }
 }
