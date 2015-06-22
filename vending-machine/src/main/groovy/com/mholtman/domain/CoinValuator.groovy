@@ -36,10 +36,12 @@ class CoinValuator {
                 numberOfCoins = leftOver / c.value
             }
 
-            numberOfCoins.times({listOfCoins.add(c.key.clone())})
-            numberOfCoins.times({leftOver -= c.value})
+            numberOfCoins.times({
+                listOfCoins.add(c.key.clone())
+                leftOver -= c.value
+            })
         }
-        
+
         return listOfCoins
     }
 
