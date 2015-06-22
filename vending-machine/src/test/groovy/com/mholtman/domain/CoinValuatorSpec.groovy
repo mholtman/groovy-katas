@@ -38,9 +38,9 @@ class CoinValuatorSpec extends Specification {
 
         where:
         coin    | value
-        QUARTER | 0.25
-        DIME    | 0.10
-        NICKEL  | 0.05
+        QUARTER | 25
+        DIME    | 10
+        NICKEL  | 5
     }
 
     def "trying to value an invalid coin throws a InvalidCoin exception"() {
@@ -67,12 +67,17 @@ class CoinValuatorSpec extends Specification {
     }
 
     @Unroll
-    def "provides coins for #amount"() {
+    def "provides coins for #amount cents"() {
         expect:
         valuator.provideCoinsForAmount(amount) == coinArray
 
         where:
         amount  | coinArray
-        0.25    | new ArrayList<Coin>([QUARTER.clone()])
+        25      | new ArrayList<Coin>([QUARTER.clone()])
+        35      | new ArrayList<Coin>([QUARTER.clone(), DIME.clone()])
+        95      | new ArrayList<Coin>([QUARTER.clone(), QUARTER.clone(), QUARTER.clone(), DIME.clone(), DIME.clone()])
+        10      | new ArrayList<Coin>([DIME.clone()])
+        5       | new ArrayList<Coin>([NICKEL.clone()])
+        30      | new ArrayList<Coin>([QUARTER.clone(), NICKEL.clone()])
     }
 }

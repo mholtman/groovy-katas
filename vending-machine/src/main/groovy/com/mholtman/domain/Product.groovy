@@ -4,6 +4,6 @@ import groovy.transform.EqualsAndHashCode
 
 @EqualsAndHashCode
 class Product {
-    double price
+    Integer price
     String name
 }

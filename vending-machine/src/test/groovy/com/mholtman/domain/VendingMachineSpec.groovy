@@ -78,9 +78,9 @@ class VendingMachineSpec extends Specification {
 
         where:
         i | price | name
-        0 | 0.50  | 'chips'
-        1 | 1.00  | 'cola'
-        2 | 0.65  | 'candy'
+        0 | 50  | 'chips'
+        1 | 100  | 'cola'
+        2 | 65  | 'candy'
     }
 
     def "can dispense cola"() {
@@ -90,7 +90,7 @@ class VendingMachineSpec extends Specification {
         machine.insertCoin(QUARTER)
         machine.insertCoin(QUARTER)
 
-        def expectedCola = new Product(name: 'cola', price: 1.00)
+        def expectedCola = new Product(name: 'cola', price: 100)
 
         when:
         machine.dispense('cola')

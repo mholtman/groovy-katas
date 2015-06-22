@@ -11,9 +11,9 @@ class VendingMachine {
     private def coinValuator = new CoinValuator()
     private def defaultFormat = NumberFormat.getCurrencyInstance()
 
-    def products = [new Product(name: 'chips', price: 0.50),
-                    new Product(name: 'cola', price: 1.00),
-                    new Product(name: 'candy', price: 0.65)]
+    def products = [new Product(name: 'chips', price: 50),
+                    new Product(name: 'cola', price: 100),
+                    new Product(name: 'candy', price: 65)]
 
     def coinReturn = new ArrayList<Coin>()
     def dispenser = new ArrayList<Product>()
@@ -22,7 +22,7 @@ class VendingMachine {
         if (valueOfCoins == 0)
             return insertCoinsMessage
 
-        defaultFormat.format(valueOfCoins)
+        defaultFormat.format(valueOfCoins/100)
     }
 
     def insertCoin(Coin coin) {
