@@ -135,4 +135,20 @@ class VendingMachineSpec extends Specification {
         then:
         machine.coinReturn == expectedCoinReturn
     }
+
+    def "returns change when product costs less"() {
+        setup:
+        machine.insertCoin(QUARTER)
+        machine.insertCoin(QUARTER)
+        machine.insertCoin(QUARTER)
+        machine.insertCoin(QUARTER)
+
+        def expectedChange = [QUARTER, DIME]
+
+        when:
+        machine.dispense('candy')
+
+        then:
+        machine.coinReturn == expectedChange
+    }
 }

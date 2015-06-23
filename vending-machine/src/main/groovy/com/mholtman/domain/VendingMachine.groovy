@@ -35,6 +35,9 @@ class VendingMachine {
         if (!chosenProduct) throw new InvalidProductException()
 
         if (chosenProduct.price <= valueOfCoins) dispenser.add(chosenProduct)
+
+        def priceDiff = valueOfCoins - chosenProduct.price
+        if (priceDiff != 0) coinReturn.addAll(coinValuator.provideCoinsForAmount(priceDiff))
     }
 
     def pressReturnCoins() {
