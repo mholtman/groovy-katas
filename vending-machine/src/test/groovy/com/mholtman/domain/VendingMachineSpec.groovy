@@ -83,20 +83,26 @@ class VendingMachineSpec extends Specification {
         2 | 65  | 'candy'
     }
 
-    def "can dispense cola"() {
+    @Unroll
+    def "can dispense #productName"() {
         setup:
         machine.insertCoin(QUARTER)
         machine.insertCoin(QUARTER)
         machine.insertCoin(QUARTER)
         machine.insertCoin(QUARTER)
 
-        def expectedCola = new Product(name: 'cola', price: 100)
+        def expectedProduct = new Product(name: productName, price: productPrice)
 
-        when:
-        machine.dispense('cola')
+        machine.dispense(productName)
 
-        then:
-        machine.dispenser.contains(expectedCola)
+        expect:
+        machine.dispenser.contains(expectedProduct)
+
+        where:
+        productName | productPrice
+        'chips'     | 50
+        'cola'      | 100
+        'candy'     | 65
     }
 
     def "will not dispense cola to insufficient funds"() {
