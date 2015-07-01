@@ -79,7 +79,7 @@ class VendingMachineSpec extends Specification {
         where:
         i | price | name
         0 | 50  | 'chips'
-        1 | 100  | 'cola'
+        1 | 100 | 'cola'
         2 | 65  | 'candy'
     }
 
