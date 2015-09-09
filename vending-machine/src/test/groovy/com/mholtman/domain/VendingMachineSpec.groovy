@@ -157,4 +157,18 @@ class VendingMachineSpec extends Specification {
         then:
         machine.coinReturn == expectedChange
     }
+
+    def "returns no change when exact amount provided"() {
+        setup:
+        machine.insertCoin(QUARTER)
+        machine.insertCoin(QUARTER)
+        machine.insertCoin(DIME)
+        machine.insertCoin(NICKEL)
+
+        when:
+        machine.dispense('candy')
+
+        then:
+        machine.coinReturn.isEmpty()
+    }
 }
